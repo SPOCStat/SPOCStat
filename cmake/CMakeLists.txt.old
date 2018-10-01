@@ -1,0 +1,21 @@
+cmake_minimum_required (VERSION 3.2 FATAL_ERROR)
+include ( cmake/checkOutOfSource.cmake )
+include ( cmake/CMakeHeader.cmake )
+enable_language(C)
+enable_language(Fortran)
+include ( cmake/compiler-specific-settings.cmake )
+if ( NOT MY_Fortran_FLAGS_ADDED )
+  set (CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${MY_Fortran_FLAGS}")
+  message ("Adding flags for ${CMAKE_Fortran_COMPILER_ID} Fortran compiler: ${CMAKE_Fortran_FLAGS}")
+  set (MY_Fortran_FLAGS_ADDED "TRUE")
+endif( NOT MY_Fortran_FLAGS_ADDED )
+
+project (OOFortran)
+
+set ( SRC_DIRS src/ )
+
+enable_testing()
+
+foreach ( SUBDIR ${SRC_DIRS} )
+  add_subdirectory ( ${SUBDIR} )
+endforeach()
