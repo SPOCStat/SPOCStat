@@ -1,3 +1,7 @@
+<div align="center">
+<img alt="SPOCS logo" src="./assets/SPOCS_logo.svg" width="35%" height="35%"/>
+</div>
+
 # SPOCS Definition
 
 This document contains an abbreviated discussion of the properties
@@ -67,3 +71,13 @@ primarily for obtaining means and arbitrarily high order statistical
 moments and comements. These may be used as building blocks in other
 capacities, but these other capacities are beyond the scope of this
 software package.
+
+---
+
+<div align="center">
+
+Made with <3 by [@zbeekman]
+
+</div>
+
+[@zbeekman]: https://github.com/zbeekman
