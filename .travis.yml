@@ -1,7 +1,7 @@
 ---
 language: python
 python:
-  - 2.7
+  - 3.5
 
 os:
   - osx
@@ -20,7 +20,7 @@ env:
     - CACHE="${HOME}/.local"
     - CMAKE_VER=3.10.1
     - CMAKE_URL_STEM="https://cmake.org/files"
-    - IF_LINUX="[ \"X${TRAVIS_OS_NAME}\" == Xlinux ] &&"
+    - IF_LINUX='[ \"X${TRAVIS_OS_NAME}\" == Xlinux ]'
     - CTEST_OUTPUT_ON_FAILURE=ON
     - BUILD_TYPES="Release Debug CodeCoverage"
     - PATH="${HOME}/.local/bin:${PATH}"
@@ -40,12 +40,12 @@ addons:
       - gfortran-8
 
 before_install:
-  - ${IF_LINUX} .travis.d/install_cmake_${TRAVIS_OS_NAME}.sh ${CMAKE_VER} ${CACHE}
+  - ${IF_LINUX} && .travis.d/install_cmake_${TRAVIS_OS_NAME}.sh ${CMAKE_VER} ${CACHE}
 
 install:
   - pip install -r requirements.txt
-  - ${IF_LINUX} export FC=gfortran
-  - ${IF_LINUX} export CC=gcc
+  - ${IF_LINUX} && export FC=gfortran
+  - ${IF_LINUX} && export CC=gcc
 
 script:
   - $FC --version
