@@ -1,3 +1,4 @@
 brew "cmake"
 brew "gcc"
-brew "python"
+brew "python@2"
+brew "graphviz"

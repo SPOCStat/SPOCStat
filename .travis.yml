@@ -41,8 +41,8 @@ before_install:
   -  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then .travis.d/install_cmake_${TRAVIS_OS_NAME}.sh ${CMAKE_VER} ${CACHE} ; fi
 
 install:
-  - pip install -r requirements.txt
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then && export FC=gfortran ; fi
+  - pip install --user -r requirements.txt
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export FC=gfortran ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CC=gcc ; fi
 
 script:
