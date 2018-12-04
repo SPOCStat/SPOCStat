@@ -16,7 +16,7 @@ cache: &mycache
 env:
   global:
     - CACHE="${HOME}/.local"
-    - CMAKE_VER=3.10.1
+    - CMAKE_VER=3.12.4
     - CMAKE_URL_STEM="https://cmake.org/files"
     - CTEST_OUTPUT_ON_FAILURE=ON
     - BUILD_TYPES="Release Debug CodeCoverage"
@@ -48,4 +48,4 @@ script:
   - $CC --version
   - cmake --version
   - mkdir build && cd build
-  - true # cmake .. && make -j $(nproc) && ctest --schedule-random --verbose
+  - cmake .. && make -j $(nproc) && ctest --schedule-random --verbose

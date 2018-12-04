@@ -1,6 +1,23 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(SPOCS C Fortran)
+cmake_policy(VERSION 3.10.3...3.13.1)
+
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
+
+include(CMakeHeader)
+
+project(SPOCS
+  VERSION 1.0
+  HOMEPAGE_URL "https://github.com/SPOCStat/SPOCStat#readme"
+  DESCRIPTION "SPOCS: Single-point, Parallel, Online, Converging Statistics library"
+  LANGUAGES C Fortran)
+
+include(checkOutOfSource)
+include(FortranBiggestInt)
+Fortran_biggest_int()
+include(CompilerSpecificSettings)
+
+
 
 set(cache_size_lib_srcs CacheLineSize.f90 CacheLineSize.c CacheLineSize.h)
 foreach(src IN LISTS cache_size_lib_srcs)

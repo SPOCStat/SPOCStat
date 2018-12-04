@@ -1,5 +1,5 @@
 program testCacheLineSize
-  use :: CacheLineSize, only: cache_line_size, getpagesize
+  use :: CacheInfo, only: cache_line_size, getpagesize
   use, intrinsic :: ISO_FORTRAN_ENV, only: stdout => output_unit, stderr => error_unit
   implicit none
 

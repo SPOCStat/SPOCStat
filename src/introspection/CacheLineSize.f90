@@ -1,4 +1,4 @@
-module CacheLineSize
+module CacheInfo
   use, intrinsic :: ISO_C_BINDING, only: c_size_t, c_int
   implicit none
 

@@ -3,13 +3,13 @@ if ( NOT CompilerSpecificSettingsInit ) #then we haven't run this code yet
   set (CompilerSpecificSettingsInit TRUE)
 
   if ( "${CMAKE_Fortran_COMPILER_ID}" MATCHES "Intel" )
-    set (MY_Fortran_FLAGS "-warn -traceback -stand f03" CACHE STRING
+    set (MY_Fortran_FLAGS "-warn -traceback -stand f08" CACHE STRING
       "Set additional Intel compiler Fortran compilation flags")
     set (ENABLE_RUNTIME_CHECKS OFF CACHE BOOL
       "Enable all Intel Fortran compiler runtime checks?")
     if (ENABLE_RUNTIME_CHECKS)
       set (MY_Fortran_FLAGS "${MY_Fortran_FLAGS} -check")
-    endif(ENABLE_RUNTIME_CHECKS)
+    endif()
     set (STATIC_ANALYSIS OFF CACHE BOOL
       "Turn on static analysis? (Note: You need Intel Inspector XE to view analysis. Forces IPO too.)")
     set (STATIC_ANALYSIS_LEVEL sc2 CACHE STRING
@@ -23,17 +23,17 @@ concise (reduce false positives more than false negatives) and precise (elminate
       set (MY_Fortran_FLAGS "${MY_Fortran_FLAGS} -diag-enable ${STATIC_ANALYSIS_LEVEL} -diag-enable sc-${STATIC_ANALYSIS_MODE}")
     endif()
   elseif ( "${CMAKE_Fortran_COMPILER_ID}" MATCHES "GNU" )
-    set (MY_Fortran_FLAGS "-fbacktrace -Wall -ffree-line-length-none -Wextra -pedantic -std=f2003 -fno-realloc-lhs -Wno-unused-parameter -Wno-maybe-uninitialized" CACHE STRING
+    set (MY_Fortran_FLAGS "-fbacktrace -Wall -ffree-line-length-none -Wextra -pedantic -std=f2008 -fno-realloc-lhs -Wno-unused-parameter -Wno-maybe-uninitialized" CACHE STRING
       "Set additional GNU compiler Fortran compilation flags")
     set (ENABLE_RUNTIME_CHECKS OFF CACHE BOOL
       "Enable all GNU Fortran compiler runtime checks?")
     if (ENABLE_RUNTIME_CHECKS)
       set (MY_Fortran_FLAGS "${MY_Fortran_FLAGS} -fcheck=all")
-    endif(ENABLE_RUNTIME_CHECKS)
-  else ("${CMAKE_Fortran_COMPILER_ID}" MATCHES "Intel" )
+    endif()
+  else()
     message("\n*** Untested Fortran compiler detected: ${CMAKE_Fortran_COMPILER_ID}.***\n")
     message("\n*** Attempting to build anyway. Please report any failures to the compiler vendor.***\n")
-  endif( "${CMAKE_Fortran_COMPILER_ID}" MATCHES "Intel" )
+  endif()
   if ( NOT MY_Fortran_FLAGS_ADDED )
     set (CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${MY_Fortran_FLAGS}")
     message (STATUS
@@ -41,10 +41,10 @@ concise (reduce false positives more than false negatives) and precise (elminate
     message (STATUS
       "Adding flags for ${CMAKE_Fortran_COMPILER_ID} Fortran compiler:  " "${MY_Fortran_FLAGS}")
     set (MY_Fortran_FLAGS_ADDED "TRUE")
-  endif( NOT MY_Fortran_FLAGS_ADDED )
+  endif()
   set_directory_properties (PROPERTIES
     INTERPROCEDURAL_OPTIMIZATION_Release ON INTERPROCEDURAL_OPTIMIZATION_RelWithDebInfo ON)
   if (${STATIC_ANALYSIS}) #we need to link & archive with XILD and XIAR
     set_directory_properties (PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
-  endif (${STATIC_ANALYSIS})
-endif( NOT CompilerSpecificSettingsInit )
+  endif()
+endif()
