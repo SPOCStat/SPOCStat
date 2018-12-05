@@ -1,3 +1,6 @@
+# Ignore my usual top level CMake build directory.
+build/
+
 # Compiled Object files
 *.slo
 *.lo

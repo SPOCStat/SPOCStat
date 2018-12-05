@@ -19,6 +19,7 @@ end program\n")
   try_run(BIG_INT_RUNS BIG_INT_COMPILES
     ${CMAKE_BINARY_DIR} ${filename}
     RUN_OUTPUT_VARIABLE FBIGINT)
+  string(REGEX REPLACE "\n" "" FBIGINT "${FBIGINT}")
   message(STATUS "Fortran big integer kind; range: ${FBIGINT}")
   list(REMOVE_AT FBIGINT 1) #lists start at 0
   add_definitions(-DBIGINT=${FBIGINT})

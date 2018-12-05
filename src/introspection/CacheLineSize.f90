@@ -7,9 +7,9 @@ module CacheInfo
        import :: c_size_t
        integer(c_size_t) :: res
      end function
-     function getpagesize() result(res) bind(c,name="getpagesize")
-       import :: c_int
-       integer(c_int) :: res
+     function get_page_size() result(res) bind(c,name="GetPageSize")
+       import :: c_size_t
+       integer(c_size_t) :: res
      end function
   end interface
 end module
